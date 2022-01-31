@@ -8,8 +8,11 @@ public class Sale {
 	private Customer customer;
 	private Book book;
 	private Timestamp timestamp;
-	public Sale() {
-		 
+	public Sale(Long saleId, Customer customer, Book book, Timestamp timestamp) {
+		this.saleId = saleId;
+		this.customer = customer;
+		this.book = book;
+		this.timestamp = timestamp;
 	}
 	public Long getSaleId() {
 		return saleId;
@@ -52,10 +55,16 @@ public class Sale {
 	}
 	@Override
 	public String toString() {
-		return "Sale [saleId=" + saleId + "]";
+		return "Sale [saleId=" + saleId + ", customer=" + customer + ", book=" + book + ", timestamp=" + timestamp
+				+ "]";
 	}
-	
-	
-	
+	public static class Builder{
+		private Long saleId;
+		private Customer customer;
+		private Book book;
+		private Timestamp timestamp;
+		
+	}
+
 
 }
