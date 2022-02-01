@@ -6,6 +6,7 @@ public class Category {
 	private String id;
 	private Name name;
 	private SubCategory subcategory;
+	
 	public Category(String id, Name name, SubCategory subcategory) {
 		this.id = id;
 		this.name = name;
