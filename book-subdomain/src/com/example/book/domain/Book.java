@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class Book {
-	
-	private String isbn;
+
+	private final Isbn isbn;
 	private Title title;
 	private Author author;
 	private Publisher publisher;
@@ -16,11 +16,11 @@ public class Book {
 	private Content contents;
 	private CoverPhoto coverPhoto;
 	private Popularity popularity;
-	private List<Category> category;
-	
-	public Book(String isbn, Title title, Author author, Publisher publisher, Edition edition,
+	private Category category;
+
+	public Book(Isbn isbn, Title title, Author author, Publisher publisher, Edition edition,
 			PublicationYear publicationYear, Price price, Reviews reviews, Content contents, CoverPhoto coverPhoto,
-			Popularity popularity, List<Category> category) {
+			Popularity popularity, Category category) {
 		this.isbn = isbn;
 		this.title = title;
 		this.author = author;
@@ -35,12 +35,8 @@ public class Book {
 		this.category = category;
 	}
 
-	public String getIsbn() {
+	public Isbn getIsbn() {
 		return isbn;
-	}
-
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
 	}
 
 	public Title getTitle() {
@@ -123,11 +119,11 @@ public class Book {
 		this.popularity = popularity;
 	}
 
-	public List<Category> getCategory() {
+	public Category getCategory() {
 		return category;
 	}
 
-	public void setCategory(List<Category> category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 
@@ -150,7 +146,81 @@ public class Book {
 
 	@Override
 	public String toString() {
-		return "Book [isbn=" + isbn + "]";
+		return "Book [isbn=" + isbn + ", title=" + title + ", author=" + author + ", publisher=" + publisher
+				+ ", edition=" + edition + ", publicationYear=" + publicationYear + ", price=" + price + ", reviews="
+				+ reviews + ", contents=" + contents + ", coverPhoto=" + coverPhoto + ", popularity=" + popularity
+				+ ", category=" + category + "]";
 	}
 	
+
+    public static class Builder {
+        private Isbn isbn;
+        private Title title;
+        private Author author;
+        private Publisher publisher;
+        private Edition edition;
+        private PublicationYear publicationYear;
+        private Price price;
+        private Content content;
+        private Popularity popularity;
+        private CoverPhoto coverPhoto;
+        private Reviews reviews;
+        private Category category;
+
+        public Builder isbn(String value){
+            this.isbn = Isbn.of(value);
+            return this;
+        }
+        public Builder title(String value){
+            this.title = Title.of(value);
+            return this;
+        }
+        public Builder author(String value){
+            this.author = Author.of(value);
+            return this;
+        }
+        public Builder publisher(Publisher value){
+            this.publisher = Publisher.of(value);
+            return this;
+        }
+        public Builder edition(String value){
+            this.edition = Edition.of(value);
+            return this;
+        }
+        public Builder publicationYear(int value){
+            this.publicationYear = PublicationYear.of(value);
+            return this;
+        }
+        public Builder price(double value){
+            this.price = Price.of(value);
+            return this;
+        }
+        public Builder content(List<String> value){
+            this.content = Content.of(value);
+            return this;
+        }
+        public Builder popularity(int value){
+            this.popularity = Popularity.of(value);
+            return this;
+        }
+        public Builder coverPhoto(byte[] value){
+            this.coverPhoto = CoverPhoto.valueOf(value);
+            return this;
+        }
+        public Builder reviews(List<String> value){
+            this.reviews = Reviews.of(value);
+            return this;
+        }
+        public Builder category(Category value){
+            this.category = Category.of(value);
+            return this;
+        }
+        public Book build(){
+            var book = new Book(isbn, title, author, publisher, edition,
+        			publicationYear, price, reviews, content, coverPhoto,
+        			popularity, category);
+            return book;
+        }
+    }
+
 }
