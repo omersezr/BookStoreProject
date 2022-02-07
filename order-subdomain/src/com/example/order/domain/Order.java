@@ -2,41 +2,32 @@ package com.example.order.domain;
 
 import java.util.Objects;
 
+import com.example.book.domain.Isbn;
+import com.example.customer.domain.CustomerId;
+
+
 public class Order {
 
-	private Long orderId;
-	private Customer customer;
-	private Book book;
-
-	public Order(Long orderId, Customer customer, Book book) {
-		super();
+	private final OrderId orderId;
+	private final CustomerId customerId;
+	private final Isbn isbn;
+	
+	public Order(OrderId orderId, CustomerId customerId, Isbn isbn) {
 		this.orderId = orderId;
-		this.customer = customer;
-		this.book = book;
+		this.customerId = customerId;
+		this.isbn = isbn;
 	}
 
-	public Long getOrderId() {
+	public OrderId getOrderId() {
 		return orderId;
 	}
 
-	public void setOrderId(Long orderId) {
-		this.orderId = orderId;
+	public CustomerId getCustomerId() {
+		return customerId;
 	}
 
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
-	public Book getBook() {
-		return book;
-	}
-
-	public void setBook(Book book) {
-		this.book = book;
+	public Isbn getIsbn() {
+		return isbn;
 	}
 
 	@Override
@@ -58,7 +49,14 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [orderId=" + orderId + ", customer=" + customer + ", book=" + book + "]";
+		return "Order [orderId=" + orderId + ", customerId=" + customerId + ", isbn=" + isbn + "]";
 	}
-
+	
+	public static class Builder{
+		private OrderId orderId;
+		private CustomerId customerId;
+		private Isbn isbn;
+	}
+	
+	
 }
