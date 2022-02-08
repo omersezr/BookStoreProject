@@ -4,8 +4,7 @@ public class Email {
 	
 	private String email;
 	
-	public Email(String email) {
-		
+	public Email(String email) {		
 		this.email = email;
 	}
 	
@@ -24,6 +23,12 @@ public class Email {
  
 	public String getEmail() {
 		return email;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Email [email=" + email + "]";
 	}
 	
 	
