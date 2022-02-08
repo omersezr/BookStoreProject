@@ -1,11 +1,11 @@
-package com.example.requistion;
+package com.example.publisher.domain;
 
 import java.util.Objects;
 
-public class Publisher {
+public class PublisherId {
 	private final String value;
 
-    private Publisher(String value) {
+    private PublisherId(String value) {
         this.value = value;
     }
 
@@ -13,10 +13,10 @@ public class Publisher {
         return value;
     }
 
-    public static Publisher of(String value) {
+    public static PublisherId of(String value) {
         if (!isValid(value))
             throw new IllegalArgumentException("This is not a valid id");
-        return new Publisher(value);
+        return new PublisherId(value);
     }
 
     private static boolean isValid(String value) {
@@ -36,17 +36,15 @@ public class Publisher {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Publisher other = (Publisher) obj;
+        PublisherId other = (PublisherId) obj;
         return Objects.equals(value, other.value);
     }
 
     @Override
     public String toString() {
-        return "Publisher[value=" + value + "]";
+        return "PublisherId [value=" + value + "]";
     }
 
 }
-
-
 
 
